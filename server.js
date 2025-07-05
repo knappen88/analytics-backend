@@ -104,6 +104,24 @@ function simulateLiveData() {
 setInterval(simulateLiveData, 3000);
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Analytics Dashboard API',
+    status: 'Running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      dashboard: '/api/analytics/dashboard',
+      live: '/api/analytics/live',
+      customers: '/api/customers',
+      revenue: '/api/analytics/revenue',
+      users: '/api/analytics/users',
+      metrics: '/api/analytics/metrics'
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.get('/api/analytics/revenue', (req, res) => {
   res.json(analytics.revenue);
 });
